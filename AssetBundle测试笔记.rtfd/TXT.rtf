@@ -1,0 +1,199 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;\red53\green53\blue53;\red220\green161\blue13;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh12920\viewkind0
+\deftab560
+\pard\pardeftab560\partightenfactor0
+
+\f0\b\fs34 \cf2 AssetBundle
+\f1 \'b2\'e2\'ca\'d4
+\f0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\b0\fs24 \cf2 \
+
+\f1 \'d0\'b4\'c1\'cb\'d2\'bb\'b8\'f6\'b3\'a1\'be\'b0\'b4\'f2\'b0\'fc\'b5\'c4\'b2\'e2\'ca\'d4\'b9\'a4\'b3\'cc\'a3\'ac\'d4\'da\'b5\'e7\'c4\'d4\'c9\'cf\'ba\'cd
+\f0 iPhone
+\f1 \'c9\'cf\'b6\'bc\'b2\'e2\'ca\'d4\'b9\'fd\'c1\'cb
+\f0 ,
+\f1 \'d4\'da\'b9\'a4\'b3\'cc\'d6\'d0\'d0\'c2\'bd\'a8
+\f0 Editor
+\f1 \'ce\'c4\'bc\'fe\'bc\'d0\'a3\'ac\'d0\'c2\'bd\'a8\'bd\'c5\'b1\'be
+\f0 NewAssetBundleEditor
+\f1 \'a3\'ac\'b7\'c5\'c8\'eb
+\f0 Editor
+\f1 \'d6\'d0\'a3\'ac\'bd\'c5\'b1\'be\'c4\'da\'c8\'dd\'c8\'e7\'cf\'c2\'a3\'ba
+\f0 \
+\
+*************************************************************************\
+using System.Collections;\uc0\u8232 using System.Collections.Generic;\u8232 using UnityEngine;\u8232 using UnityEditor;\u8232 using System.IO;\u8232 \u8232 public class NewAssetBundleEditor : Editor \{\u8232 \u8232 	[MenuItem ("New AB Editor/Build AssetBundles")]\u8232 	static void BuildAllAssetBundles ()\u8232 	\{\u8232 		
+\i //
+\f1\i0 \'b5\'da\'d2\'bb\'b8\'f6\'b2\'ce\'ca\'fd\'bb\'f1\'c8\'a1\'b5\'c4\'ca\'c7
+\f0\i AssetBundle
+\f1\i0 \'b4\'e6\'b7\'c5\'b5\'c4\'cf\'e0\'b6\'d4\'b5\'d8\'d6\'b7\'a1\'a3
+\f0\i \uc0\u8232 
+\i0 		BuildPipeline.BuildAssetBundles(\uc0\u8232 			AssetBundleConfig.ASSETBUNDLE_PATH.Substring(AssetBundleConfig.PROJECT_PATH.Length), \u8232 			BuildAssetBundleOptions.UncompressedAssetBundle |\u8232 			BuildAssetBundleOptions.CollectDependencies |\u8232 			BuildAssetBundleOptions.DeterministicAssetBundle,\u8232 			BuildTarget.iOS);
+\i //
+\f1\i0 \'c8\'e7\'b9\'fb\'d4\'da\'b5\'e7\'c4\'d4\'c9\'cf\'b2\'e2\'ca\'d4\'a3\'ac\'d5\'e2\'c0\'ef\'ca\'c7
+\f0\i BuildTarget.StandaloneOSXUniversal
+\f1\i0 \'a3\'a8\'b8\'f9\'be\'dd\'b5\'e7\'c4\'d4\'b5\'c4\'cf\'b5\'cd\'b3\'c0\'b4\'d1\'a1\'d4\'f1\'a3\'a9\'a3\'ac\'ce\'d2\'d5\'e2\'c0\'ef\'ca\'c7\'d4\'da\'ca\'d6\'bb\'fa\'c9\'cf\'b2\'e2\'ca\'d4\'a3\'ac\'cb\'f9\'d2\'d4\'d0\'b4\'b3\'c9
+\f0\i IOS\uc0\u8232 
+\i0 	\}\uc0\u8232 \u8232 \u8232 \u8232 	[MenuItem("New AB Editor/SetAssetBundleName")]\u8232 	static void SetResourcesAssetBundleName()\u8232 	\{\u8232 		UnityEngine.Object[] SelectedAsset = Selection.GetFiltered(typeof(Object), \u8232 			SelectionMode.Assets | SelectionMode.ExcludePrefab );\u8232 		
+\i //
+\f1\i0 \'b4\'cb\'b4\'a6\'cc\'ed\'bc\'d3\'d0\'e8\'d2\'aa\'c3\'fc\'c3\'fb\'b5\'c4\'d7\'ca\'d4\'b4\'ba\'f3\'d7\'ba\'c3\'fb
+\f0\i ,
+\f1\i0 \'d7\'a2\'d2\'e2\'b4\'f3\'d0\'a1\'d0\'b4\'a1\'a3
+\f0\i \uc0\u8232 
+\i0 		string[] Filtersuffix = new string[] \{ ".prefab",".mat",".dds" \};   \uc0\u8232 \u8232 		if (!(SelectedAsset.Length == 1)) return;\u8232 \u8232 		string fullPath = AssetBundleConfig.PROJECT_PATH + \u8232 			AssetDatabase.GetAssetPath(SelectedAsset[0]);\u8232 \u8232 		if (Directory.Exists(fullPath))\u8232 		\{\u8232 			DirectoryInfo dir = new DirectoryInfo(fullPath);\u8232 \u8232 			var files = dir.GetFiles("*", SearchOption.AllDirectories);\u8232 			for (var i = 0; i < files.Length; ++i)\u8232 			\{\u8232 				var fileInfo = files[i];\u8232 				EditorUtility.DisplayProgressBar("
+\f1 \'c9\'e8\'d6\'c3
+\f0 AssetName
+\f1 \'c3\'fb\'b3\'c6
+\f0 ", "
+\f1 \'d5\'fd\'d4\'da\'c9\'e8\'d6\'c3
+\f0 AssetName
+\f1 \'c3\'fb\'b3\'c6\'d6\'d0
+\f0 ...", 1f * i / files.Length);\uc0\u8232 				foreach (string suffix in Filtersuffix)\u8232 				\{\u8232 					if (fileInfo.Name.EndsWith(suffix))\u8232 					\{\u8232 						string path = fileInfo.FullName.Replace('\\\\', \u8232 							'/').Substring(AssetBundleConfig.PROJECT_PATH.Length);\u8232 						var importer = AssetImporter.GetAtPath(path);\u8232 						if (importer)\u8232 						\{\u8232 							string name = path.Substring(fullPath.Substring(\u8232 								AssetBundleConfig.PROJECT_PATH.Length).Length + 1);\u8232 							importer.assetBundleName = name.Substring(0,\u8232 								name.LastIndexOf('.')) + AssetBundleConfig.SUFFIX;\u8232 						\}\u8232 					\}\u8232 				\}\u8232 			\}\u8232 			AssetDatabase.RemoveUnusedAssetBundleNames();\u8232 		\}\u8232 		EditorUtility.ClearProgressBar();\u8232 	\}\u8232 \u8232 	[MenuItem("New AB Editor/GetAllAssetBundleName")]\u8232 	static void GetAllAssetBundleName()\u8232 	\{\u8232 \u8232 		string[] names = AssetDatabase.GetAllAssetBundleNames();\u8232 \u8232 		foreach (var name in names)\u8232 		\{\u8232 			Debug.Log(name);\u8232 		\}\u8232 \u8232 	\}\u8232 \u8232 	[MenuItem("New AB Editor/ClearAssetBundleName")]\u8232 	static void ClearResourcesAssetBundleName()\u8232 	\{\u8232 		UnityEngine.Object[] SelectedAsset = Selection.GetFiltered(typeof(Object), \u8232 			SelectionMode.Assets | SelectionMode.ExcludePrefab);\u8232 		
+\i //
+\f1\i0 \'b4\'cb\'b4\'a6\'cc\'ed\'bc\'d3\'d0\'e8\'d2\'aa\'c3\'fc\'c3\'fb\'b5\'c4\'d7\'ca\'d4\'b4\'ba\'f3\'d7\'ba\'c3\'fb
+\f0\i ,
+\f1\i0 \'d7\'a2\'d2\'e2\'b4\'f3\'d0\'a1\'d0\'b4\'a1\'a3
+\f0\i \uc0\u8232 
+\i0 		string[] Filtersuffix = new string[] \{ ".prefab", ".mat", ".dds" \};   \uc0\u8232 \u8232 		if (!(SelectedAsset.Length == 1)) return;\u8232 \u8232 		string fullPath = AssetBundleConfig.PROJECT_PATH + AssetDatabase.GetAssetPath(SelectedAsset[0]);\u8232 \u8232 		if (Directory.Exists(fullPath))\u8232 		\{\u8232 			DirectoryInfo dir = new DirectoryInfo(fullPath);\u8232 \u8232 			var files = dir.GetFiles("*", SearchOption.AllDirectories);\u8232 			;\u8232 			for (var i = 0; i < files.Length; ++i)\u8232 			\{\u8232 				var fileInfo = files[i];\u8232 				EditorUtility.DisplayProgressBar("
+\f1 \'c7\'e5\'b3\'fd
+\f0 AssetName
+\f1 \'c3\'fb\'b3\'c6
+\f0 ", "
+\f1 \'d5\'fd\'d4\'da\'c7\'e5\'b3\'fd
+\f0 AssetName
+\f1 \'c3\'fb\'b3\'c6\'d6\'d0
+\f0 ...", 1f * i / files.Length);\uc0\u8232 				foreach (string suffix in Filtersuffix)\u8232 				\{\u8232 					if (fileInfo.Name.EndsWith(suffix))\u8232 					\{\u8232 						string path = fileInfo.FullName.Replace('\\\\', \u8232 							'/').Substring(AssetBundleConfig.PROJECT_PATH.Length);\u8232 						var importer = AssetImporter.GetAtPath(path);\u8232 						if (importer)\u8232 						\{\u8232 							importer.assetBundleName = null;\u8232 						\}\u8232 					\}\u8232 				\}\u8232 			\}\u8232 		\}\u8232 		EditorUtility.ClearProgressBar();\u8232 		AssetDatabase.RemoveUnusedAssetBundleNames();\u8232 	\}\u8232 \}\u8232 \
+*************************************************************************\
+\
+
+\f1 \'d0\'c2\'bd\'a8\'c1\'cb
+\f0 3
+\f1 \'b8\'f6\'b3\'a1\'be\'b0\'a3\'ba
+\f0 Main, 
+\f1 Scene_capsule, Scene_cube; \'c8\'eb\'bf\'da\'ca\'c7\'d6\'f7\'b3\'a1\'be\'b0Main. \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0 \cf2 {{\NeXTGraphic AB879CDD-87A6-483C-9E59-EAFBE3537DA3.png \width23780 \height18320
+}¬}\
+
+\f1 \'bd\'c5\'b1\'be
+\f0 AssetBundleScene
+\f1 \'c4\'da\'c8\'dd\'c8\'e7\'cf\'c2\'a3\'ba
+\f0 \
+\
+******************************AssetBundleScene******************start*************************\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf2 using System.Collections;\uc0\u8232 using System.Collections.Generic;\u8232 using UnityEngine;\u8232 using UnityEngine.UI;\u8232 using System.IO;\u8232 using UnityEngine.SceneManagement;\u8232 using System;\u8232 \u8232 \u8232 public static class ButtonExtension\u8232 \{\u8232 	public static void AddEventListener<T>(this Button button, T param, Action<T> OnClick)\u8232 	\{\u8232 		button.onClick.AddListener(delegate\u8232 			\{\u8232 				OnClick(param);\u8232 			\} );\u8232 	\}\u8232 	\u8232 \}\u8232 \u8232 public class AssetBundleScene : MonoBehaviour \u8232 \{\u8232 	[Header("UI STUFF")]\u8232 	public Slider progressBar;\u8232 	public Button btn;\u8232 \u8232 	public  string url;\u8232 \u8232 	static AssetBundle assetBundle;\u8232 \u8232 	static List<string> sceneNames=new List<string>();\u8232 \u8232 	void JudgeFileExistsOrNot(string fileName)\u8232 	\{\u8232 		\u8232 		if (Directory.Exists(fileName)) \u8232 		\{\u8232 			Debug.Log("file exist: "+fileName);\u8232 		\}\u8232 		else\u8232 		\{\u8232 			Debug.Log("file does not exist: "+fileName);\u8232 		\}\u8232 	\}\u8232 \u8232 	IEnumerator Start()\u8232 	\{\u8232 \u8232 		url="file:///"+Application.streamingAssetsPath+"/AssetBundle/primitive.dlc";\u8232 \u8232 		Debug.Log("
+\f1 \'bc\'ec\'b2\'e9
+\f0 AssetBundle
+\f1 \'ca\'c7\'b7\'f1\'d4\'da
+\f0  Application.streamingAssetsPath 
+\f1 \'cf\'c2
+\f0 ");\uc0\u8232 		JudgeFileExistsOrNot(Application.streamingAssetsPath + "/AssetBundle");\u8232 \u8232 		if (!assetBundle) \u8232 		\{\u8232 			using(WWW www=new WWW(url))\u8232 			\{\u8232 				while (!www.isDone && string.IsNullOrEmpty(www.error)) \u8232 				\{\u8232 					progressBar.value=www.progress;\u8232 					yield return null;\u8232 				\}\u8232 \u8232 				yield return www;\u8232 				if (!string.IsNullOrEmpty(www.error)) \u8232 				\{\u8232 					Debug.Log(www.error);\u8232 					yield break;\u8232 				\}\u8232 					\u8232 				assetBundle=www.assetBundle;\u8232 				string[] scenes=assetBundle.GetAllScenePaths();\u8232 \u8232 				foreach (string sceneName in scenes) \u8232 				\{\u8232 					sceneNames.Add(Path.GetFileNameWithoutExtension(sceneName));\u8232 				\}\u8232 			\}\u8232 		\}\u8232 		btn.AddEventListener("Scene_capsule",LoadAssetBundleScene);\u8232 	\}\u8232 \u8232 \u8232 	public void LoadAssetBundleScene(string sceneName)\u8232 	\{\u8232 		Debug.Log("sceneName"+sceneName);\u8232 		SceneManager.LoadScene(sceneName);\u8232 	\}\u8232 \}\u8232 ******************************AssetBundleScene*******end************************************\
+\
+\uc0\u8232 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf2 {{\NeXTGraphic ED81574C-81D2-4233-807B-C04175075123.png \width23640 \height18200
+}¬}\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf2 \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf2 \uc0\u8232 
+\f1 Scene_capsule, Scene_cubel\'c1\'bd\'b8\'f6\'b3\'a1\'be\'b0\'b2\'bc\'be\'d6\'c0\'e0\'cb\'c6\'a3\'ac\'c7\'eb\'d7\'a2\'d2\'e2\'b0\'b4\'c5\'a5\'c9\'cf\'b9\'d2\'b5\'c4\'bd\'c5\'b1\'be
+\f0 SceneBtn
+\f1 \'a3\'ba
+\f0 \
+*****************************************************************start
+\f1 \
+
+\f0 using UnityEngine;\uc0\u8232 using UnityEngine.SceneManagement;\u8232 \u8232 public class SceneBtn : MonoBehaviour \{\u8232 \u8232 	public void LoadScene(string sceneName)\u8232 	\{\u8232 		SceneManager.LoadScene(sceneName);	\u8232 	\}\u8232 \}\u8232 *****************************************************************end\
+\
+\
+
+\f1 \'bb\'b9\'d3\'d0\'d2\'bb\'b8\'f6\'b1\'a3\'b4\'e6\'c2\'b7\'be\'b6\'c3\'fb\'b5\'c4\'bd\'c5\'b1\'be
+\f0 AssetBundleConfig
+\f1 \'a3\'ba
+\f0 \
+*****************************************************************start\
+using System.Collections;\uc0\u8232 using System.Collections.Generic;\u8232 using UnityEngine;\u8232 \u8232 public class AssetBundleConfig : MonoBehaviour \{\u8232 	
+\i //AssetBundle
+\f1\i0 \'b4\'f2\'b0\'fc\'c2\'b7\'be\'b6
+\f0\i \uc0\u8232 
+\i0 	public static string ASSETBUNDLE_PATH = Application.dataPath + "/StreamingAssets/AssetBundle/";\uc0\u8232 	
+\i ///Users/WangQian/Documents/UnityWorkspace/AssetBundle_test/Assets/StreamingAssets/AssetBundle/\uc0\u8232 \u8232 
+\i0 	
+\i //
+\f1\i0 \'d7\'ca\'d4\'b4\'b5\'d8\'d6\'b7
+\f0\i \uc0\u8232 
+\i0 	public static string APPLICATION_PATH = Application.dataPath + "/";\uc0\u8232 	
+\i ////Users/WangQian/Documents/UnityWorkspace/AssetBundle_test/Assets/\uc0\u8232 \u8232 
+\i0 	
+\i //
+\f1\i0 \'b9\'a4\'b3\'cc\'b5\'d8\'d6\'b7
+\f0\i \uc0\u8232 
+\i0 	public static string PROJECT_PATH = APPLICATION_PATH.Substring(0, APPLICATION_PATH.Length - 7);\uc0\u8232 	
+\i //Users/WangQian/Documents/UnityWorkspace/AssetBundle_test/\uc0\u8232 \u8232 \u8232 
+\i0 	
+\i //AssetBundle
+\f1\i0 \'b4\'e6\'b7\'c5\'b5\'c4\'ce\'c4\'bc\'fe\'bc\'d0\'c3\'fb
+\f0\i \uc0\u8232 
+\i0 	public static string ASSETBUNDLE_FILENAM = "AssetBundle";\uc0\u8232 \u8232 	
+\i //AssetBundle
+\f1\i0 \'b4\'f2\'b0\'fc\'b5\'c4\'ba\'f3\'d7\'ba\'c3\'fb
+\f0\i \uc0\u8232 
+\i0 	public static string SUFFIX = ".unity3d";\uc0\u8232 \}\
+*****************************************************************end\
+\
+\
+
+\f1 \'b3\'a1\'be\'b0\'b4\'ee\'bd\'a8\'ba\'c3\'ba\'f3\'a3\'ac\'bd\'f8\'d0\'d0\'d7\'ca\'d4\'b4\'b4\'f2\'b0\'fc\'a3\'ac\'c8\'bb\'ba\'f3\'be\'cd\'bf\'c9\'d2\'d4\'b2\'e2\'ca\'d4\'c1\'cb\'a3\'bb
+\f0 \
+
+\f1 \'d7\'a2\'d2\'e2\'d4\'da
+\f0 IOS
+\f1 \'c9\'e8\'b1\'b8\'c9\'cf\'b2\'e2\'ca\'d4\'ca\'b1\'a3\'ac\'c8\'e7\'b9\'fb\'b1\'a8\'d2\'d4\'cf\'c2\'b4\'ed\'a3\'ba
+\f0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\b \cf2 Could not produce class with ID 136.\
+This could be caused by a class being stripped from the build even though it is needed. Try disabling 'Strip Engine Code' in Player Settings.\
+
+\f1 \'be\'cd\'b0\'d1
+\f0 unity
+\f1 \'d6\'d0
+\f0 Player Settings
+\f1 \'c0\'ef\'b5\'c4
+\f0 Strip Engine Code
+\f1 \'c8\'a1\'cf\'fb\'b9\'b4\'d1\'a1\'a3\'bb
+\f0\b0 \
+\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1 \cf2 \'d7\'a2\'d2\'e2\'a3\'ba
+\f0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f1 \cf2 \'b1\'be\'b5\'d8\'b2\'e2\'ca\'d4\'a3\'ba\'bd\'a8\'d2\'e9\'d7\'ee\'ba\'f3\'bd\'ab
+\f0 Assetbundle
+\f1 \'b7\'c5\'d4\'da
+\f0 StreamingAssets
+\f1 \'ce\'c4\'bc\'fe\'bc\'d0\'cf\'c2\'a3\'ac\'c8\'e7\'b9\'fb\'c3\'bb\'d3\'d0\'be\'cd\'b4\'b4\'bd\'a8\'d2\'bb\'b8\'f6\'a3\'ac\'d2\'f2\'ce\'aa\'d2\'c6\'b6\'af\'c6\'bd\'cc\'a8\'cf\'c2\'d6\'bb\'c4\'dc\'b6\'c1\'c8\'a1\'d5\'e2\'b8\'f6\'c2\'b7\'be\'b6\'a3\'bb
+\f0 StreamingAssets
+\f1 \'ca\'c7\'d6\'bb\'b6\'c1\'c2\'b7\'be\'b6\'a3\'ac\'b2\'bb\'c4\'dc\'d0\'b4\'c8\'eb\'a3\'bb
+\f0 \
+
+\f1 \'b7\'fe\'ce\'f1\'c6\'f7\'cf\'c2\'d4\'d8\'a3\'ba\'be\'cd\'b2\'bb\'d0\'e8\'d2\'aa\'b7\'c5\'d4\'da\'d5\'e2\'c0\'ef\'a3\'ac\'b7\'fe\'ce\'f1\'c6\'f7\'c9\'cf\'bf\'cd\'bb\'a7\'b6\'cb\'d3\'c3
+\f0 www
+\f1 \'c0\'e0\'bd\'f8\'d0\'d0\'cf\'c2\'d4\'d8\'a1\'a3\
+\
+\'d6\'f7\'d2\'aa\'b5\'c4\'b4\'fa\'c2\'eb\'ca\'c7\'b8\'f9\'be\'ddyoutube\'c9\'cf\'b5\'c4{\field{\*\fldinst{HYPERLINK "https://www.youtube.com/watch?v=sG6QYOiI2Gw&t=1815s%E6%9D%A5%E5%8F%82%E8%80%83%E5%AE%8C%E6%88%90%E7%9A%84"}}{\fldrslt 
+\f0 \cf3 https://www.youtube.com/watch?v=sG6QYOiI2Gw&t=1815s
+\f1 \'c0\'b4\'b2\'ce\'bf\'bc\'cd\'ea\'b3\'c9\'b5\'c4}}\'a3\'bb\
+\'d2\'b2\'bf\'c9\'d2\'d4\'b2\'ce\'bf\'bc\'d3\'ea\'cb\'c9\'b5\'c4{\field{\*\fldinst{HYPERLINK "http://www.xuanyusong.com/archives/2405"}}{\fldrslt 
+\f0 \cf3 http://www.xuanyusong.com/archives/2405}}\'a3\'ac\'b2\'bb\'b9\'fd\'d3\'ea\'cb\'c9\'b5\'c4\'c0\'ef\'c3\'e6\'d3\'d0\'b5\'c4\'bd\'d3\'bf\'da\'b9\'fd\'ca\'b1\'c1\'cb\'a1\'a3
+\f0 \
+}

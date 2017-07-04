@@ -1,0 +1,59 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;\f1\fnil\fcharset0 Menlo-Italic;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green61\blue204;\red136\green136\blue136;\red51\green51\blue51;
+\red245\green125\blue0;\red0\green150\blue149;\red0\green0\blue255;\red0\green0\blue0;\red255\green0\blue0;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15080\viewh15920\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \'d2\'aa\'ca\'b5\'cf\'d6\'b5\'c4\'b9\'a6\'c4\'dc\'ca\'c7\'d7\'d6\'c4\'bb\'b5\'c4\'c7\'d0\'bb\'bb\'d3\'eb\'b5\'ad\'c8\'eb\'b5\'ad\'b3\'f6\'a3\'ac\'c8\'e7\'b9\'fb\'d4\'dastart\'b7\'bd\'b7\'a8\'d6\'d0\'b5\'f7\'d3\'c3\'cf\'c2\'c3\'e6\'b5\'c4\'d0\'ad\'cd\'ac\'a3\'ac\'d0\'a7\'b9\'fb\'ca\'c7\'d5\'fd\'c8\'b7\'b5\'c4
+\f1\i \cf3 \uc0\u8232 
+\f2\i0 \cf4 	IEnumerator ChangeSubtitle()\uc0\u8232 	\{\u8232 		Debug.Log(\cf5 "IEnumerator ChangeSubtitle()------
+\f0 \'c7\'d0\'bb\'bb\'d7\'d6\'c4\'bb
+\f2 ---"\cf4 );\uc0\u8232 		\cf6 for\cf4  (\cf6 int\cf4  i = \cf5 0\cf4 ; i < subTitleList.Count; i++) \uc0\u8232 		\{\u8232 			subtitleText.text=subTitleList[i];\u8232 			\cf6 yield\cf4  \cf6 return\cf4  \cf6 new\cf4  WaitForSeconds(recordingTimeList[i]-Constant.SUBTITLE_FADINGTIME);\uc0\u8232 			fadeOut=\cf6 true\cf4 ;\uc0\u8232 			\cf6 if\cf4  (i==subTitleList.Count-\cf5 1\cf4 ) \uc0\u8232 			\{\u8232 				canvasGroupFadingOut=\cf6 true\cf4 ;\uc0\u8232 			\}\u8232 			\cf6 yield\cf4  \cf6 return\cf4  \cf6 new\cf4  WaitForSeconds(Constant.SUBTITLE_FADINGTIME);\uc0\u8232 			\cf6 if\cf4  (i<subTitleList.Count-\cf5 1\cf4 )\uc0\u8232 			\{\u8232 				fadeIn=\cf6 true\cf4 ;\uc0\u8232 			\}\u8232 \u8232 		\}\u8232 		Debug.Log(\cf5 "
+\f0 \'d0\'ad\'cd\'ac\'cd\'ea\'b3\'c9
+\f2 "\cf4 );\uc0\u8232 	\}\u8232 
+\f0 \cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf7 \'b5\'ab\'ca\'c7\'d0\'ad\'cd\'ac\'b2\'bb\'c4\'dc\'d4\'dd\'cd\'a3\'a3\'ac\'b6\'f8\'d0\'e8\'c7\'f3\'ca\'c7\'d2\'aa\'ca\'b5\'cf\'d6\'d7\'d6\'c4\'bb\'d4\'dd\'cd\'a3\'c7\'d0\'bb\'bb\'a3\'ac\'cb\'f9\'d2\'d4\'d4\'daupdate\'d6\'d0\'c0\'b4\'b8\'c4\'d0\'b4\'a3\'ba\
+\'b4\'ed\'ce\'f3\'d6\'d8\'cf\'d6\'a3\'ba\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf6 void\cf4  Update () \uc0\u8232 	\{\u8232 \u8232 				\u8232 		ChangeSubtitleLineByLine();\u8232 
+\f1\i \cf3 		// 
+\f0\i0 \'d7\'d6\'c4\'bb\'b5\'c4\'b5\'ad\'c8\'eb\'b5\'ad\'b3\'f6
+\f1\i \uc0\u8232 
+\f2\i0 \cf4 		FadeInAndOut();\uc0\u8232 \u8232 	\u8232 	\}\
+\
+\cf6 void\cf4  ChangeSubtitleLineByLine()\uc0\u8232 	\{\u8232 \u8232 		\u8232 
+\f1\i \cf3 		\cf8 for (int i = 0; i < subTitleList.Count; ) \uc0\u8232 		\{\cf3 \uc0\u8232 
+\f2\i0 \cf4 			subtitleText.text=subTitleList[i];\uc0\u8232 \u8232 			temp_timer+=Time.deltaTime;\u8232 			\cf6 if\cf4  (temp_timer>=recordingTimeList[i]-Constant.SUBTITLE_FADINGTIME) \uc0\u8232 			\{\u8232 				Debug.Log(\cf5 "temp_timer----"\cf4 +temp_timer);\uc0\u8232 				fadeOut=\cf6 true\cf4 ;\uc0\u8232 				\cf6 if\cf4  (i==subTitleList.Count-\cf5 1\cf4 ) \uc0\u8232 				\{\u8232 					canvasGroupFadingOut=\cf6 true\cf4 ;\uc0\u8232 				\}\u8232 				\cf6 if\cf4  (temp_timer>=recordingTimeList[i]) \uc0\u8232 				\{\u8232 					Debug.Log(\cf5 "------------"\cf4 +recordingTimeList[i]);\uc0\u8232 					temp_timer=\cf5 0\cf4 ;\uc0\u8232 					\cf6 if\cf4  (i<subTitleList.Count-\cf5 1\cf4 )\uc0\u8232 					\{\u8232 						fadeIn=\cf6 true\cf4 ;\uc0\u8232 					\}\u8232 					i++;\u8232 					Debug.Log(\cf5 "i===="\cf4 +i);\uc0\u8232 \u8232 				\}\u8232 \u8232 			\}\u8232 \u8232 
+\f1\i \cf3 		\cf8 \}\cf3 \uc0\u8232 
+\f2\i0 \cf4 		\uc0\u8232 	\}\
+\
+
+\f0 \cf7 \'c9\'cf\'c3\'e6\'b5\'c4\'d0\'b4\'b7\'a8\'ca\'c7\'b4\'ed\'ce\'f3\'b5\'c4\'a3\'ac\'d5\'fd\'c8\'b7\'b5\'c4\'d3\'a6\'b8\'c3\'ca\'c7\cf4 \
+\
+
+\f2 \cf6 	float\cf4  temp_timer=\cf5 0\cf4 ;\uc0\u8232 	\cf6 int\cf4  i=\cf5 0\cf4 ;\uc0\u8232 \u8232 	\u8232 	\cf6 void\cf4  Update () \uc0\u8232 	\{\u8232 \u8232 		ChangeSubtitleLineByLine();\u8232 \u8232 		
+\f1\i \cf3 // 
+\f0\i0 \'d7\'d6\'c4\'bb\'b5\'c4\'b5\'ad\'c8\'eb\'b5\'ad\'b3\'f6
+\f1\i \uc0\u8232 
+\f2\i0 \cf4 		FadeInAndOut();\uc0\u8232 \u8232 	\}\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 void\cf4  ChangeSubtitleLineByLine()\uc0\u8232 	\{\u8232 \u8232 		\cf6 if\cf4  (i<subTitleList.Count) \uc0\u8232 		\{\u8232 
+\f1\i \cf3 //		for (int i = 0; i < subTitleList.Count; ) \uc0\u8232 //		\{\u8232 
+\f2\i0 \cf4 			subtitleText.text=subTitleList[i];\uc0\u8232 \u8232 			temp_timer+=Time.deltaTime;\u8232 			\cf6 if\cf4  (temp_timer>=recordingTimeList[i]-Constant.SUBTITLE_FADINGTIME) \uc0\u8232 			\{\u8232 				Debug.Log(\cf5 "temp_timer----"\cf4 +temp_timer);\uc0\u8232 				fadeOut=\cf6 true\cf4 ;\uc0\u8232 				\cf6 if\cf4  (i==subTitleList.Count-\cf5 1\cf4 ) \uc0\u8232 				\{\u8232 					canvasGroupFadingOut=\cf6 true\cf4 ;\uc0\u8232 				\}\u8232 				\cf6 if\cf4  (temp_timer>=recordingTimeList[i]) \uc0\u8232 				\{\u8232 					Debug.Log(\cf5 "------------"\cf4 +recordingTimeList[i]);\uc0\u8232 					temp_timer=\cf5 0\cf4 ;\uc0\u8232 					\cf6 if\cf4  (i<subTitleList.Count-\cf5 1\cf4 )\uc0\u8232 					\{\u8232 						fadeIn=\cf6 true\cf4 ;\uc0\u8232 					\}\u8232 					i++;\u8232 					Debug.Log(\cf5 "i===="\cf4 +i);\uc0\u8232 \u8232 				\}\u8232 \u8232 			\}\u8232 \u8232 
+\f1\i \cf3 //		\}\uc0\u8232 
+\f2\i0 \cf4 		\}\uc0\u8232 	\}\u8232 \u8232 
+\f0 \cf9 \'d0\'e8\'d2\'aa\'d7\'a2\'d2\'e2\'b5\'c4
+\f2 \'97\'97
+\f0 \'d0\'ad\'cd\'ac\'d6\'d0\'d0\'e8\'d2\'aa\'ca\'d6\'b6\'af\'b5\'f7\'d3\'c3for\'d1\'ad\'bb\'b7\'a3\'ac\'ca\'c7\'d2\'f2\'ce\'aa\'d0\'ad\'cd\'ac\'d6\'bb\'bb\'e1\'d7\'df\'d2\'bb\'b4\'ce\'a3\'ac\'d0\'e8\'d2\'aa\'ca\'d6\'b6\'af\'c0\'b4\'d1\'ad\'bb\'b7\'a3\'bb\'b6\'f8update\'d6\'d0\'b2\'bb\'d0\'e8\'d2\'aa\'ca\'d6\'b6\'af\'d0\'b4for\'d1\'ad\'bb\'b7\'a3\'ac\'d2\'f2\'ce\'aaupdate\'b1\'be\'c9\'ed\'be\'cd\'bb\'e1\'d1\'ad\'bb\'b7\'d6\'b4\'d0\'d0\'a3\'ac\'cb\'f9\'d2\'d4\'b0\'d1\
+
+\f2 \cf6 float\cf4  temp_timer=\cf5 0\cf4 ;\uc0\u8232 	\cf6 int\cf4  i=\cf5 0\cf4 ;\
+
+\f0 \cf9 \'d0\'b4\'d4\'da\'ba\'af\'ca\'fd\'cd\'e2\'c3\'e6\'a1\'a3
+\f2 \cf4 \uc0\u8232 \u8232 }

@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\fnil\fcharset0 Menlo-Bold;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red136\green136\blue136;\red0\green150\blue149;
+\red51\green51\blue51;\red245\green125\blue0;\red51\green100\blue164;\red212\green29\blue40;\red54\green66\blue80;
+\red47\green54\blue60;\red246\green246\blue246;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww19200\viewh14780\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \
+\cf2 IsolatedStorageException: Could not find a part of the path "/var/containers/Bundle/Application/5D437B9E-BE89-4A81-A5E3-E799E6062F89/MagicCircuit.app/Data/Xmls/CircuitItems_lv2.xml".\
+\cf0 \
+ios
+\f1 \'c9\'e8\'b1\'b8\'d5\'d2\'b2\'bb\'b5\'bdXML\'ce\'c4\'bc\'fe\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\
+1.\'c2\'b7\'be\'b6\'c9\'e8\'d6\'c3\'b2\'bb\'b6\'d4\'a1\'a3\
+\'d5\'e6\'bb\'fa\'c9\'cf\'b5\'c4
+\f2\b\fs22 \CocoaLigature0 Application.datapath==/var/containers/Bundle/Application/134D0700-DED3-46F7-9332-238199FC3F70/MagicCircuit.app/Data
+\f1 \'a3\'ac
+\f2 \
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
+\cf0 Application.streamingAssetsPath==/var/containers/Bundle/Application/134D0700-DED3-46F7-9332-238199FC3F70/MagicCircuit.app/Data/Raw\
+Application.persistentDataPath==/var/mobile/Containers/Data/Application/F72B1E1E-C69B-40ED-BC33-6A9B5BD3051E/Documents\
+
+\f1 \'cb\'f9\'d2\'d4\'b2\'bb\'c4\'dc\'d3\'c3
+\f2 Application.persistentDataPath
+\f1 \'c0\'b4\'b6\'c1\'c8\'a1\'a3\'ac\'c8\'e7\'cf\'c2\'ce\'aa\'d5\'fd\'c8\'b7\'c2\'b7\'be\'b6\'b5\'c4\'bb\'f1\'c8\'a1
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f3\b0\fs24 \cf3 \CocoaLigature1 string xmlPath4 = Application.dataPath.Substring( 0,  Application.dataPath.Length - 4);\uc0\u8232 string xmlPath5 = Path.Combine(xmlPath4, "Xmls/CircuitItems_lv2.xml");\
+\
+
+\f1\fs28 \cf0 2.xml\'ce\'c4\'bc\'fe\'b1\'e0\'c2\'eb\'b8\'f1\'ca\'bd\'b2\'bb\'b6\'d4\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\
+\'b4\'ed\'ce\'f3\'b5\'c4\'ca\'c7
+\f3\fs24 \cf4 <?\cf5 xml version=\cf6 "1.0"\cf5  encoding=\cf6 "gb2312"\cf4 ?>\
+
+\f1\fs28 \cf0 \'b4\'ed\'ce\'f3\'b5\'c4\'ca\'c7
+\f3\fs24 \cf4 <?\cf5 xml version=\cf6 "1.0"\cf5  encoding=\cf6 \'93utf-8\'94\cf4 ?>\
+\
+
+\f1\fs28 \cf0 3.unity\'b4\'f2\'b0\'fc\'ba\'f3\'b5\'c4xcode\'b9\'a4\'b3\'cc\'c0\'ef\'d0\'e8\'d2\'aa\'ca\'d6\'b6\'af\'cc\'ed\'bc\'d3xml\'ce\'c4\'bc\'fe\'bc\'d0\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\
+unity\'d6\'d0\'b5\'c4xml\'ce\'c4\'bc\'fe\'bc\'d0\'ca\'c7\'ca\'d6\'b6\'af\'b4\'b4\'bd\'a8\'b5\'c4\'a3\'ac\'b2\'bb\'ca\'c7Unity\'d7\'d4\'b4\'f8\'b5\'c4\'c4\'dc\'d7\'d4\'b6\'af\'ca\'b6\'b1\'f0\'a3\'ac\'cb\'f9\'d2\'d4\'b4\'f2\'b0\'fc\'b3\'c9xcode\'ba\'f3\'d0\'e8\'d2\'aa\'ca\'d6\'b6\'af\'cc\'ed\'bc\'d3\'b5\'bdcopy bundle resources\
+
+\f3\fs24 \cf4 \
+\
+
+\f1\fs28 \cf0 4.\'c2\'b7\'be\'b6\'d5\'fd\'c8\'b7\'ba\'f3\'a3\'ac\'c3\'bb\'d3\'d0\'a3\'a8\'b6\'c1\'a3\'a9\'c8\'a8\'cf\'de\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\'a1\'aa\'cc\'ed\'bc\'d3\'b2\'ce\'ca\'fd
+\f3\fs24 \cf7 FileAccess\cf5 .Read\cf4 \
+\cf5  \cf4 public\cf5  \cf4 static\cf5  \cf7 XmlCircuitItemCollection\cf5  Load(\cf4 string\cf5  path)\uc0\u8232         \{\u8232             \cf4 var\cf5  serializer = \cf4 new\cf5  \cf7 XmlSerializer\cf5 (\cf4 typeof\cf5 (\cf7 XmlCircuitItemCollection\cf5 ));\uc0\u8232 			\cf4 using\cf5  (\cf4 var\cf5  stream = \cf4 new\cf5  \cf7 FileStream\cf5 (path, \cf7 FileMode\cf5 .Open,\cf7 FileAccess\cf5 .Read))\uc0\u8232             \{\u8232                 \cf4 return\cf5  serializer.Deserialize(stream) \cf4 as\cf5  \cf7 XmlCircuitItemCollection\cf5 ;\uc0\u8232             \}\u8232         \}\u8232 \cf4 \
+
+\f1\fs28 \cf0 \
+
+\f3\fs24 \cf3 \
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
+
+\f2\b\fs22 \cf2 \CocoaLigature0 Unhandled Exception: System.NullReferenceException: A null value was found where an object instance was required.\
+  at GetImage.ThreadTakePicture () [0x00000] in <filename unknown>:0 \
+  at System.Threading.ThreadStart.Invoke () [0x00000] in <filename unknown>:0 
+\f3\b0\fs24 \cf3 \CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \
+x\'97617.4796\
+y\'97823.3061\uc0\u8232 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf0 unity\'b5\'f7\'d3\'c3
+\f3 Lua\
+1.
+\f1 \'bd\'a8
+\f3 unity
+\f1 \'b9\'a4\'b3\'cc\'a3\'ac
+\f3 dllimport
+\f1 \'d0\'b4\'ba\'c3\'b5\'f7\'d3\'c3\'b7\'bd\'b7\'a8\'a3\'ac\'b4\'f2\'b0\'fc\'b3\'c9xcode\'b9\'a4\'b3\'cc\'a3\'bb\
+2.\'d4\'daunity\'b4\'f2\'b0\'fc\'ba\'c3\'b5\'c4xcode\'b9\'a4\'b3\'cc\'d6\'d0\'cc\'ed\'bc\'d3torch.h, torch.m,\'b1\'e0\'d0\'b4\'ce\'c4\'bc\'fe\'ca\'b5\'cf\'d6
+\f3 dllimport
+\f1 \'d6\'d0\'b5\'c4\'b5\'f7\'d3\'c3\'b7\'bd\'b7\'a8\'a3\'ac\'b0\'d1lua\'ce\'c4\'bc\'fe\'d7\'f7\'ce\'aa\'d7\'ca\'d4\'b4\'cc\'ed\'bc\'d3\'bd\'f8\'c0\'b4\'a1\'aa\'a1\'aa\'d4\'dacopy Bundle Resources\'d6\'d0\'cc\'ed\'bc\'d3\'a3\'ac\'bb\'f2\'d5\'df\'d6\'b1\'bd\'d3\'cd\'cf\'bd\'f8\'b9\'a4\'b3\'cc,\'d4\'dacopy Bundle Resources\'ba\'cdLink Binary With Libraries\'c1\'bd\'b8\'f6\'d1\'a1\'cf\'ee\'d6\'d0\'b7\'d6\'b1\'f0\'cc\'ed\'bc\'d3Torch.framework 
+\f3 \cf3 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs28 \cf0 \expnd0\expndtw0\kerning0
+\'d4\'da
+\f4 Xcode
+\f1 \'cf\'c2\'b1\'e0\'d2\'eb\'b9\'a4\'b3\'cc\'d5\'fd\'b3\'a3\'a3\'ac\'d4\'da\'c4\'a3\'c4\'e2\'c6\'f7\'cf\'c2\'d4\'cb\'d0\'d0\'d5\'fd\'b3\'a3\'a3\'ac\'d7\'ee\'ba\'f3\'d4\'da\'d5\'e6\'bb\'fa\'c9\'cf\'d4\'cb\'d0\'d0\'b5\'c4\'ca\'b1\'ba\'f2\'b3\'f6\'cf\'d6\'c1\'cb\'c8\'e7\'cf\'c2\'b4\'ed\'ce\'f3\'a3\'ba
+\f4 \
+Could not launch "FeedMeWorms" failed to get the task for process 3118\
+\pard\pardeftab720\partightenfactor0
+\cf0 {{\NeXTGraphic 1357356153_5100.jpg \width8400 \height2620 \noorient
+}¬}\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+
+\f1 \'d4\'ad\'d2\'f2\'ca\'c7\'a3\'ba\'ce\'d2\'b5\'c4\'c7\'a9\'c3\'fb\'ca\'c7
+\f4 distribution certificate
+\f1 \'a3\'ac\'bc\'b4\'b7\'a2\'b2\'bc\'d5\'df\'d6\'a4\'ca\'e9\'a3\'ac\'b2\'bb\'d4\'ca\'d0\'ed\'d4\'da\'d5\'e6\'bb\'fa\'c9\'cf\'d6\'b1\'bd\'d3\'d4\'cb\'d0\'d0
+\f4 \
+
+\f1 \'ca\'b9\'d3\'c3\'bf\'aa\'b7\'a2\'d5\'df\'d6\'a4\'ca\'e9\'be\'cd
+\f4 OK
+\f1 \'c1\'cb
+\f4 \
+
+\f1 \'b2\'ce\'bf\'bc\'a3\'ba
+\f4 http://blog.csdn{\field{\*\fldinst{HYPERLINK "http://lib.csdn.net/base/dotnet"}}{\fldrslt 
+\b \cf8 .NET}}/teng_ontheway/article/details/8467932\
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs60 \cf9 The file MemoryStream is corrupted! Remove it and launch unity again\
+\pard\pardeftab720\partightenfactor0
+
+\b0\fs32 \cf9 This is the solution - it involves Unity's remote:\
+Set Editor->UnityRemote->Device->None->Exit Unity (To save this config)->reopen->play Once it plays successfully, you can reset the Unity Remote to the device you were using previously.
+\b\fs60 \
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b0\fs24 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Pasted Graphic.tiff \width8320 \height3060
+}¬}
+\b\fs60 \cf9 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf10 \cb11 \'d4\'da\'ca\'b9\'d3\'c3Xcode\'bd\'f8\'d0\'d0\'d5\'e6\'bb\'fa\'b5\'f7\'ca\'d4\'b5\'c4\'ca\'b1\'ba\'f2\'a3\'ac\'d3\'d0\'ca\'b1\'b8\'f9\'be\'dd\'d5\'e6\'bb\'fa\'b5\'c4\'cf\'b5\'cd\'b3\'b2\'bb\'cd\'ac\'a3\'ac\'bb\'e1\'b3\'f6\'cf\'d6could not find developer disk image \'b4\'ed\'ce\'f3\'a3\'ac\'d5\'e2\'ca\'c7\'d3\'c9\'d3\'da\'d5\'e6\'bb\'fa\'cf\'b5\'cd\'b3\'b9\'fd\'b8\'df\'bb\'f2\'d5\'df\'b9\'fd\'b5\'cd\'a3\'acXcode\'d6\'d0\'c3\'bb\'d3\'d0\'c6\'a5\'c5\'e4\'b5\'c4\'c5\'e4\'d6\'c3\'b0\'fc\'ce\'c4\'bc\'fe\'a3\'ac\'ce\'d2\'c3\'c7\'bf\'c9\'d2\'d4\'cd\'a8\'b9\'fd\'d5\'e2\'b8\'f6\'c2\'b7\'be\'b6\'bd\'f8\'c8\'eb\'c5\'e4\'d6\'c3\'b0\'fc\'b5\'c4\'b4\'e6\'b7\'c5\'c4\'bf\'c2\'bc\'a3\'ba\cb1 \
+\cb11 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport\cb1 \
+\cb11 \'c0\'ef\'c3\'e6\'d3\'d0\'c0\'e0\'cb\'c6\'d5\'e2\'d1\'f9\'b5\'c4\'d2\'bb\'d0\'a9\'ce\'c4\'bc\'fe\'bc\'d0\'a3\'ac\'c8\'e7\'b9\'fb\'d5\'e2\'d0\'a9\'ce\'c4\'bc\'fe\'bc\'d0\'d6\'d0\'c3\'bb\'d3\'d0\'b0\'fc\'ba\'ac\'ce\'d2\'c3\'c7\'d5\'e6\'bb\'fa\'b5\'c4\'cf\'b5\'cd\'b3\'a3\'ac\'d4\'f2\'b2\'bb\'c4\'dc\'bd\'f8\'d0\'d0\'d5\'e6\'bb\'fa\'b2\'e2\'ca\'d4\'a1\'a3\'b5\'ab\'ca\'c7\'ce\'d2\'c3\'c7\'bf\'c9\'d2\'d4\'cd\'a8\'b9\'fd\'bd\'ab\'cf\'e0\'d3\'a6\'b5\'c4\'c5\'e4\'d6\'c3\'b0\'fc\'cc\'ed\'bc\'d3\'c8\'eb\'d5\'e2\'b8\'f6\'ce\'c4\'bc\'fe\'bc\'d0\'c0\'b4\'bd\'e2\'be\'f6\'ce\'ca\'cc\'e2\'a3\'ba\cb1 \
+{{\NeXTGraphic 095617_WYzU_2340880.png \width4220 \height5780 \noorient
+}¬}\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs60 \cf9 \
+\
+\
+}
